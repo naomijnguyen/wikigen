@@ -1,0 +1,10 @@
+# Concept extraction (optional -- omit and run with --no-api for demo mode)
+anthropic>=0.40
+
+# Graph construction and layout
+networkx>=3.0
+
+# Rendering
+matplotlib>=3.7
+numpy>=1.24
+Pillow>=10.0

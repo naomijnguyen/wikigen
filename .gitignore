@@ -1,0 +1,23 @@
+# Conversation transcripts — personal data, never commit these.
+chat_history/
+
+# Generated output
+wiki_graph.html
+wiki_graph.png
+wiki_evolution.gif
+
+# Environment & secrets
+.env
+.env.*
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
