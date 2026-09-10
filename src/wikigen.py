@@ -454,7 +454,10 @@ _NOISE_PATTERNS = [
     r"✘ \[ERROR\]", r"npx wrangler", r"wrangler deploy", r"exit code",
     r"\$ npm ", r"node_modules", r"stack trace", r"TypeError:", r"SyntaxError:",
     r"at Object\.", r"at Module\.", r"ENOENT", r"EACCES",
-    r"^\s*%\s", r"naomijnguyen@", r"MacBook",
+    r"^\s*%\s",
+    # Shell prompt lines like "user@Host project %" -- match the shape, not one
+    # person's username, so the filter works for anyone running this.
+    r"^[\w.-]+@[\w.-]+[\s:].*[%$#]\s*$",
 ]
 
 import re as _re
@@ -559,7 +562,7 @@ footer a{{color:var(--dim);text-decoration:none}}
     <p>18 months of conversations with Claude — what we actually built, mapped</p>
   </div>
   <div id="meta">
-    <a href="https://github.com/njarm23/oo" target="_blank" rel="noopener">github.com/njarm23/oo</a><br>
+    <br>
     Jennifer Nguyen Armstrong<br>
     &amp; Claude (Anthropic) · 2025–2026
   </div>
@@ -611,7 +614,7 @@ thing I'm bad at: writing my own code. In doing so, I accidentally ended up with
 </section>
 
 <footer>
-  <a href="https://github.com/njarm23/oo" target="_blank" rel="noopener">github.com/njarm23/oo</a>
+  
   &nbsp;·&nbsp; Jennifer Nguyen Armstrong &amp; Claude (Anthropic) &nbsp;·&nbsp; 2025–2026
 </footer>
 
