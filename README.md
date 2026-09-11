@@ -94,6 +94,16 @@ python src/chat.py          # writes chat_history/<timestamp>.txt
 
 ---
 
+## Crediting
+
+Generated pages carry no author by default — a name hardcoded into the
+template would appear on every graph anyone produced. Set `WIKIGEN_CREDIT` to
+put your own on yours:
+
+```bash
+WIKIGEN_CREDIT="Your Name" python src/wikigen.py --html
+```
+
 ## Requirements
 
 Python 3.9+, plus `networkx`, `matplotlib`, `numpy`, `Pillow`, and `anthropic`

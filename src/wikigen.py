@@ -482,6 +482,13 @@ def is_noisy(messages: list[dict], threshold: float = 0.55) -> bool:
 def render_html(conversations: list[dict], G, output_path: str):
     """Render a self-contained interactive HTML with the force-directed concept graph."""
 
+    # Whoever runs this gets their own credit, or none. A name hardcoded here
+    # would appear on every graph anyone produced, which is wrong for a tool
+    # meant to be handed to other people.
+    credit = os.environ.get("WIKIGEN_CREDIT", "").strip()
+    credit_html = f"{credit}<br>" if credit else ""
+    credit_inline = f"{credit}&nbsp;·&nbsp;" if credit else ""
+
     # Build node/edge data for JS
     max_count = max((G.nodes[n]["count"] for n in G.nodes), default=1)
 
@@ -563,8 +570,8 @@ footer a{{color:var(--dim);text-decoration:none}}
   </div>
   <div id="meta">
     <br>
-    Jennifer Nguyen Armstrong<br>
-    &amp; Claude (Anthropic) · 2025–2026
+    {credit_html}
+    &amp; generated with wikigen
   </div>
 </div>
 <div id="tip"></div>
@@ -615,7 +622,7 @@ thing I'm bad at: writing my own code. In doing so, I accidentally ended up with
 
 <footer>
   
-  &nbsp;·&nbsp; Jennifer Nguyen Armstrong &amp; Claude (Anthropic) &nbsp;·&nbsp; 2025–2026
+  {credit_inline}&nbsp;·&nbsp; generated with wikigen
 </footer>
 
 <script>
