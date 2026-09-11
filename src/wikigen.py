@@ -22,6 +22,7 @@ from __future__ import annotations
 import os
 import sys
 import json
+import re
 import glob
 import math
 import argparse
@@ -48,6 +49,64 @@ except ImportError as e:
     print(f"Missing dependency: {e}")
     print("Install with: pip install networkx matplotlib pillow numpy")
     sys.exit(1)
+
+
+# Concept extraction model. Overridable with --model; see also --consolidate,
+# which reuses the same model for the synonym-merging pass.
+DEFAULT_MODEL = "claude-haiku-4-5-20251001"
+
+
+def _accepts_temperature(model: str) -> bool:
+    """
+    Whether a model still takes a `temperature` parameter.
+
+    A denylist of older families rather than an allowlist of current ids, so an
+    unrecognised model is assumed new and the parameter is dropped instead of
+    failing the request.
+    """
+    return bool(re.search(r"haiku-4|sonnet-4|opus-4", model))
+
+
+def consolidate_concepts(client, concepts, model):
+    """
+    Merge near-synonymous concept names into canonical ones.
+
+    Each conversation is analysed in isolation, so the same idea comes back
+    phrased differently every time — "local JSON state", "...persistence",
+    "...storage" and "...management" are four nodes for one idea. Because they
+    share neighbours the layout correctly stacks them, and the graph becomes a
+    pile of overlapping labels. No amount of layout tuning fixes that: the
+    duplicates have to be merged before the graph is built.
+
+    Returns {original: canonical}, containing only the names being changed.
+    """
+    if len(concepts) < 2:
+        return {}
+
+    system = """You are consolidating concept names extracted from separate conversations.
+The same idea is often phrased differently across them.
+
+Group names that mean the same thing and pick the clearest, shortest name for each group.
+Merge only genuine synonyms — "local JSON state" and "local JSON state persistence" are the
+same idea; "model routing" and "model consistency" are not. When in doubt, leave a name alone.
+
+Return ONLY a JSON object mapping each original name to its canonical name. Include only the
+names you are merging; omit anything that stays as-is. No explanation, no markdown."""
+
+    try:
+        response = client.messages.create(
+            model=model,
+            max_tokens=8000,
+            system=system,
+            messages=[{"role": "user", "content": json.dumps(sorted(concepts))}],
+        )
+        text = next((b.text for b in response.content if getattr(b, "type", "") == "text"), "")
+        clean = text.replace("```json", "").replace("```", "").strip()
+        mapping = json.loads(clean)
+        return {k: v for k, v in mapping.items() if isinstance(v, str) and k != v}
+    except Exception as e:
+        print(f"  consolidation failed ({e}) — continuing with unmerged concepts")
+        return {}
 
 
 # ── Color palette (mirrors AttractorView.md) ─────────────────────────────────
@@ -114,7 +173,7 @@ def load_conversation(path: str) -> list[dict]:
 
 # ── Concept extraction ────────────────────────────────────────────────────────
 
-def extract_concepts(client: anthropic.Anthropic, messages: list[dict], conversation_name: str) -> list[str]:
+def extract_concepts(client: anthropic.Anthropic, messages: list[dict], conversation_name: str, model: str = DEFAULT_MODEL) -> list[str]:
     """Ask Claude for 3-5 key concepts from a conversation. Returns concept names."""
     if not messages:
         return []
@@ -135,17 +194,24 @@ If the conversation has no notable concepts, return []."""
 
     try:
         response = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=300,
-            # SDK 1.x removed temperature/top_p/top_k from the messages.create()
-            # signature (TypeError if passed). The API still honours them on
-            # Haiku 4.5, so pass it through extra_body — low temperature keeps
-            # concept extraction consistent across runs.
-            extra_body={"temperature": 0.2},
+            model=model,
+            # Generous for a 3-5 item list, because reasoning models spend
+            # this budget on a thinking block before writing any text — 300 was
+            # enough for Haiku and truncated Opus mid-JSON.
+            max_tokens=2000,
+            # Only where the model accepts it. SDK 1.x removed temperature from
+            # the messages.create() signature, so it goes via extra_body — but
+            # newer models reject the parameter outright ("`temperature` is
+            # deprecated for this model"), and extra_body passes it straight
+            # through to that rejection. The workaround for the SDK change is
+            # exactly what breaks the request on Opus 5.
+            **({"extra_body": {"temperature": 0.2}} if _accepts_temperature(model) else {}),
             system=system,
             messages=truncated + [{"role": "user", "content": "List the key concepts from this conversation."}],
         )
-        text = response.content[0].text.strip()
+        # Not content[0]: reasoning models put a ThinkingBlock first, which has
+        # no .text. Take the first actual text block.
+        text = next((b.text for b in response.content if getattr(b, "type", "") == "text"), "").strip()
         text = text.replace("```json", "").replace("```", "").strip()
         concepts = json.loads(text)
         if isinstance(concepts, list):
@@ -303,32 +369,59 @@ def compute_layout(G: nx.Graph, seed: int = 42) -> dict:
         return _spring(G)
 
     # One conversation per cluster means the graph is usually disconnected.
-    # spring_layout flings whole components apart with nothing between them,
-    # so each cluster collapses into an unreadable knot in a mostly-empty
-    # frame. Lay each component out on its own, normalise it into a unit box,
-    # then pack the boxes into a grid so every cluster gets equal room.
-    cols = math.ceil(math.sqrt(len(components)))
-    pos = {}
-    for i, comp in enumerate(components):
+    # spring_layout flings whole components apart with nothing between them, so
+    # each cluster collapses into an unreadable knot in a mostly-empty frame.
+    #
+    # Lay each component out on its own, then pack the boxes. Box size scales
+    # with sqrt(node count): a uniform grid gives a forty-node cluster the same
+    # canvas as a three-node one, which compresses it far harder and produces a
+    # pile of overlapping labels — the small clusters look fine and the one
+    # that matters most is illegible.
+    #
+    # Packing is a simple shelf algorithm: place boxes left to right, wrap to a
+    # new row when the row is full, row height set by its tallest box.
+    TARGET_W = 5.5          # canvas is wider than tall
+    GUTTER = 0.22
+
+    boxes = []
+    for comp in components:
         sub = G.subgraph(comp)
-        if len(sub.nodes) == 1:
+        n = len(sub.nodes)
+        if n == 1:
             sub_pos = {next(iter(sub.nodes)): (0.0, 0.0)}
         else:
-            # Wider spread than the single-component case: each cluster is
-            # normalised into its own cell, so pushing nodes apart here buys
-            # label separation without costing canvas space.
-            sub_pos = _spring(sub, spread=2.6)
+            # Spread scales with size so dense clusters push their own nodes
+            # apart rather than relying on the box alone.
+            # Spread grows with size. Labels are 2-3 words wide, so a dense
+            # cluster needs far more node separation than a sparse one before
+            # the text stops overlapping.
+            sub_pos = _spring(sub, spread=2.6 + min(3.0, n * 0.06))
 
-        xs = [float(p[0]) for p in sub_pos.values()]
-        ys = [float(p[1]) for p in sub_pos.values()]
+        xs = [float(q[0]) for q in sub_pos.values()]
+        ys = [float(q[1]) for q in sub_pos.values()]
         span = max(max(xs) - min(xs), max(ys) - min(ys)) or 1.0
-        cx = (max(xs) + min(xs)) / 2.0
-        cy = (max(ys) + min(ys)) / 2.0
+        cx, cy = (max(xs) + min(xs)) / 2.0, (max(ys) + min(ys)) / 2.0
 
-        col, row = i % cols, i // cols
+        # sqrt keeps a 40-node cluster ~3.6x the width of a 3-node one rather
+        # than 13x, which would leave the small ones as invisible dots.
+        # Slightly superlinear in sqrt(n): big clusters need disproportionate
+        # room because label collisions scale with density, not node count.
+        size = max(0.55, (n ** 0.62) * 0.42)
+        boxes.append((sub_pos, span, cx, cy, size))
+
+    pos = {}
+    shelf_x, shelf_y, shelf_h = 0.0, 0.0, 0.0
+    for sub_pos, span, cx, cy, size in boxes:
+        if shelf_x > 0 and shelf_x + size > TARGET_W:
+            shelf_y -= shelf_h + GUTTER      # new row
+            shelf_x, shelf_h = 0.0, 0.0
         for node, (x, y) in sub_pos.items():
-            pos[node] = ((float(x) - cx) / span * 0.78 + col * 1.25,
-                         (float(y) - cy) / span * 0.78 - row * 1.25)
+            pos[node] = (
+                (float(x) - cx) / span * size + shelf_x + size / 2.0,
+                (float(y) - cy) / span * size + shelf_y - size / 2.0,
+            )
+        shelf_x += size + GUTTER
+        shelf_h = max(shelf_h, size)
     return pos
 
 
@@ -788,6 +881,9 @@ def main():
     parser.add_argument("--static",   action="store_true", help="Output static PNG")
     parser.add_argument("--animated", action="store_true", help="Output animated GIF")
     parser.add_argument("--no-api",   action="store_true", help="Skip Claude API (demo mode)")
+    parser.add_argument("--model",    default=DEFAULT_MODEL, help=f"Model for concept extraction (default: {DEFAULT_MODEL})")
+    parser.add_argument("--consolidate", action="store_true", help="Merge near-synonymous concepts in a second pass before graphing")
+    parser.add_argument("--save-concepts", default="", help="Write the extracted concepts to a JSON file, for comparing runs")
     parser.add_argument("--before",   default="", help="Only include sessions whose filename contains a date string before this (e.g. '2026-05')")
     parser.add_argument("--out", default=".", help="Output directory for generated files")
     parser.add_argument("--project", default="", help="Only include Claude Code session dirs whose name contains this substring (e.g. 'Anthropic')")
@@ -863,13 +959,29 @@ def main():
                 continue
 
             print(f"  Processing: {name}")
-            concepts = extract_concepts(client, messages, name)
+            concepts = extract_concepts(client, messages, name, args.model)
 
         print(f"    Concepts: {concepts or '(none)'}")
         conversations.append({"name": name, "date": date, "concepts": concepts})
 
     if skipped:
         print(f"  (skipped {skipped} noisy/short session(s) — mostly error logs or terminal output)")
+
+    if args.consolidate and client:
+        all_names = sorted({c for conv in conversations for c in conv["concepts"]})
+        print(f"\nConsolidating {len(all_names)} concept names...")
+        mapping = consolidate_concepts(client, all_names, args.model)
+        if mapping:
+            for conv in conversations:
+                conv["concepts"] = sorted({mapping.get(c, c) for c in conv["concepts"]})
+            remaining = len({mapping.get(c, c) for c in all_names})
+            print(f"  merged {len(all_names)} -> {remaining} ({len(mapping)} names rewritten)")
+
+    if args.save_concepts:
+        with open(args.save_concepts, "w") as fh:
+            json.dump({"model": args.model, "consolidated": bool(args.consolidate),
+                       "conversations": conversations}, fh, indent=2)
+        print(f"  concepts written to {args.save_concepts}")
 
     # Build full graph
     G = build_graph(conversations)
