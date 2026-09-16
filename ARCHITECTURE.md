@@ -2,8 +2,8 @@
 Title        wikigen architecture
 Purpose      The shape of the pipeline — how transcripts become a concept graph, and the decisions behind extraction, consolidation, layout and rendering.
 Author       Jennifer Naomi Nguyen
-Canonical    ~/Projects/Anthropic/wikigen/ARCHITECTURE.md — authoritative. Copies of `wikigen.py` also exist under ~/Projects/Anthropic/interpretability/attractor/components; this repository is the live one.
-Updated      2026-09-13
+Canonical    ~/Bootwitch/Projects/wikigen/ARCHITECTURE.md — authoritative. Copies of `wikigen.py` lived under the former ~/Projects/Anthropic/interpretability/attractor/components and did not move to the current project home; a drifted snapshot remains at ~/Bootwitch/Projects/oo/src/wikigen.py. This repository is the live one.
+Updated      2026-09-16
 Dependencies none to read. To run what it describes: Python 3.9+, networkx, matplotlib, numpy, Pillow, and anthropic (unless using `--no-api`).
 ---
 

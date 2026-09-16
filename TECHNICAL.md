@@ -2,8 +2,8 @@
 Title        wikigen technical reference
 Purpose      Operational reference — install, every CLI flag, input formats, environment variables, outputs and known limitations.
 Author       Jennifer Naomi Nguyen
-Canonical    ~/Projects/Anthropic/wikigen/TECHNICAL.md — authoritative
-Updated      2026-09-13
+Canonical    ~/Bootwitch/Projects/wikigen/TECHNICAL.md — authoritative
+Updated      2026-09-16
 Dependencies Python 3.9+; networkx>=3.0, matplotlib>=3.7, numpy>=1.24, Pillow>=10.0, and anthropic>=0.40 (only if not using `--no-api`). ANTHROPIC_API_KEY for concept extraction.
 ---
 
