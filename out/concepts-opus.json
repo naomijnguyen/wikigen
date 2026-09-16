@@ -3,8 +3,8 @@
   "consolidated": true,
   "conversations": [
     {
-      "name": "214a12e3-ede3-4e7f-83f4-190102e3cb97",
-      "date": "214a12e3-ede3-4e7f-83f4-190102e3cb97",
+      "name": "conversation-01",
+      "date": null,
       "concepts": [
         "pre-cleanup snapshot before destructive operations",
         "pressure-testing your own findings before presenting",
@@ -14,8 +14,8 @@
       ]
     },
     {
-      "name": "9635b32c-0c6f-43ee-b370-3ab77de9bdf1",
-      "date": "9635b32c-0c6f-43ee-b370-3ab77de9bdf1",
+      "name": "conversation-02",
+      "date": null,
       "concepts": [
         "Finder copy-instead-of-move on root-owned directories",
         "absolute vs relative filepaths",
@@ -25,8 +25,8 @@
       ]
     },
     {
-      "name": "a6cbfe11-b4a4-4e47-9253-6285e8050127",
-      "date": "a6cbfe11-b4a4-4e47-9253-6285e8050127",
+      "name": "conversation-03",
+      "date": null,
       "concepts": [
         "D1 100-parameter bind limit",
         "README vs ARCHITECTURE split",
@@ -36,8 +36,8 @@
       ]
     },
     {
-      "name": "c76678ac-98eb-4005-b3bc-98b7fab4ecca",
-      "date": "c76678ac-98eb-4005-b3bc-98b7fab4ecca",
+      "name": "conversation-04",
+      "date": null,
       "concepts": [
         "API keys persisting in git history",
         "aspirational documentation as security hole",
@@ -47,13 +47,13 @@
       ]
     },
     {
-      "name": "0f241485-ab81-4d22-8cbc-e568bc553d27",
-      "date": "0f241485-ab81-4d22-8cbc-e568bc553d27",
+      "name": "conversation-05",
+      "date": null,
       "concepts": []
     },
     {
-      "name": "0fbd1da0-ed72-4664-964b-6a1bbd8a30cf",
-      "date": "0fbd1da0-ed72-4664-964b-6a1bbd8a30cf",
+      "name": "conversation-06",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as state generator",
@@ -63,13 +63,13 @@
       ]
     },
     {
-      "name": "15467430-1f6d-4476-a8a1-d0aec8a5a38e",
-      "date": "15467430-1f6d-4476-a8a1-d0aec8a5a38e",
+      "name": "conversation-07",
+      "date": null,
       "concepts": []
     },
     {
-      "name": "1a062f20-9d5b-491b-b23e-6bc70caafbbc",
-      "date": "1a062f20-9d5b-491b-b23e-6bc70caafbbc",
+      "name": "conversation-08",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "hosted vs local parity",
@@ -79,8 +79,8 @@
       ]
     },
     {
-      "name": "1b6ef57a-2ac3-493d-b62d-e017e8400bf2",
-      "date": "1b6ef57a-2ac3-493d-b62d-e017e8400bf2",
+      "name": "conversation-09",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basins as energy states",
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "name": "22e2518f-2398-4933-bb1c-7cf4454e0ae5",
-      "date": "22e2518f-2398-4933-bb1c-7cf4454e0ae5",
+      "name": "conversation-10",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "auth reuse via existing login",
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "name": "23b17386-9207-4c10-ad3a-317a4b18216b",
-      "date": "23b17386-9207-4c10-ad3a-317a4b18216b",
+      "name": "conversation-11",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basin weight updates",
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "name": "251e95c4-6341-4836-8998-21e2e8052c1f",
-      "date": "251e95c4-6341-4836-8998-21e2e8052c1f",
+      "name": "conversation-12",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basins as energy states",
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "name": "26118001-a97b-410a-b1cf-0957dca52e6b",
-      "date": "26118001-a97b-410a-b1cf-0957dca52e6b",
+      "name": "conversation-13",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "auth reuse via existing login",
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "name": "26c33ae0-e3fc-4d9b-b3c1-827742723b44",
-      "date": "26c33ae0-e3fc-4d9b-b3c1-827742723b44",
+      "name": "conversation-14",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p subprocess invocation",
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "name": "3040ca10-0f78-4ec8-aee8-f14e875ee215",
-      "date": "3040ca10-0f78-4ec8-aee8-f14e875ee215",
+      "name": "conversation-15",
+      "date": null,
       "concepts": [
         "CLI model inheritance",
         "Haiku for summarization tasks",
@@ -155,8 +155,8 @@
       ]
     },
     {
-      "name": "32ed7044-c6c1-499a-83b0-5122695cf491",
-      "date": "32ed7044-c6c1-499a-83b0-5122695cf491",
+      "name": "conversation-16",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basins as energy states",
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "name": "43041570-7a05-486d-b5b9-487dd673c4d8",
-      "date": "43041570-7a05-486d-b5b9-487dd673c4d8",
+      "name": "conversation-17",
+      "date": null,
       "concepts": [
         "attractor basins as energy states",
         "auth reuse via existing login",
@@ -177,8 +177,8 @@
       ]
     },
     {
-      "name": "457741d5-29eb-480c-a643-5eed72812da5",
-      "date": "457741d5-29eb-480c-a643-5eed72812da5",
+      "name": "conversation-18",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "auth reuse via existing login",
@@ -188,8 +188,8 @@
       ]
     },
     {
-      "name": "47b30288-b7aa-4852-87d3-2d95e6058556",
-      "date": "47b30288-b7aa-4852-87d3-2d95e6058556",
+      "name": "conversation-19",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor entropy and trajectory metrics",
@@ -199,8 +199,8 @@
       ]
     },
     {
-      "name": "4b8f012a-ee40-4b29-ae88-7a873926fe93",
-      "date": "4b8f012a-ee40-4b29-ae88-7a873926fe93",
+      "name": "conversation-20",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as inference backend",
@@ -210,8 +210,8 @@
       ]
     },
     {
-      "name": "4f5799fc-984c-4b8d-9249-5cb816103ce3",
-      "date": "4f5799fc-984c-4b8d-9249-5cb816103ce3",
+      "name": "conversation-21",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as state generator",
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "name": "50075d07-9ea0-453e-a6b0-eea7d1c4ecf5",
-      "date": "50075d07-9ea0-453e-a6b0-eea7d1c4ecf5",
+      "name": "conversation-22",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "auth reuse via existing login",
@@ -232,8 +232,8 @@
       ]
     },
     {
-      "name": "547a3f19-aac2-4600-b994-fc04c68c7b35",
-      "date": "547a3f19-aac2-4600-b994-fc04c68c7b35",
+      "name": "conversation-23",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p subprocess invocation",
@@ -243,8 +243,8 @@
       ]
     },
     {
-      "name": "589afb2e-157a-46d3-b35d-8ed7e3833f3f",
-      "date": "589afb2e-157a-46d3-b35d-8ed7e3833f3f",
+      "name": "conversation-24",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "attractor basins as energy states",
@@ -254,8 +254,8 @@
       ]
     },
     {
-      "name": "634a76ed-8e98-4a4a-9fd6-dc3c1c80008e",
-      "date": "634a76ed-8e98-4a4a-9fd6-dc3c1c80008e",
+      "name": "conversation-25",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as state generator",
@@ -265,8 +265,8 @@
       ]
     },
     {
-      "name": "66115da4-6837-49b5-9afd-2fff6b83e63c",
-      "date": "66115da4-6837-49b5-9afd-2fff6b83e63c",
+      "name": "conversation-26",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as inference backend",
@@ -276,8 +276,8 @@
       ]
     },
     {
-      "name": "78758bd8-410c-4689-a8b3-630bbd6bf21f",
-      "date": "78758bd8-410c-4689-a8b3-630bbd6bf21f",
+      "name": "conversation-27",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as inference backend",
@@ -287,13 +287,13 @@
       ]
     },
     {
-      "name": "79085b5d-183d-4741-97f6-f43732ae08bc",
-      "date": "79085b5d-183d-4741-97f6-f43732ae08bc",
+      "name": "conversation-28",
+      "date": null,
       "concepts": []
     },
     {
-      "name": "8221b296-d32b-4290-82d8-004d984b1998",
-      "date": "8221b296-d32b-4290-82d8-004d984b1998",
+      "name": "conversation-29",
+      "date": null,
       "concepts": [
         "CLAUDE.md project memory file",
         "agent configuration self-disclosure",
@@ -303,8 +303,8 @@
       ]
     },
     {
-      "name": "857aa5ae-fbd4-4dbc-a1cf-e49be6fe3a02",
-      "date": "857aa5ae-fbd4-4dbc-a1cf-e49be6fe3a02",
+      "name": "conversation-30",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basin weight updates",
@@ -314,8 +314,8 @@
       ]
     },
     {
-      "name": "862bffa5-f07c-4caa-a9b7-9f3e6e61b93a",
-      "date": "862bffa5-f07c-4caa-a9b7-9f3e6e61b93a",
+      "name": "conversation-31",
+      "date": null,
       "concepts": [
         "CLI model inheritance",
         "hosted vs local parity",
@@ -324,8 +324,8 @@
       ]
     },
     {
-      "name": "8c850fc9-31c2-46a0-92d3-824f663bef99",
-      "date": "8c850fc9-31c2-46a0-92d3-824f663bef99",
+      "name": "conversation-32",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "auth reuse via existing login",
@@ -335,8 +335,8 @@
       ]
     },
     {
-      "name": "91135cf0-47db-47f7-a685-2b5291c98982",
-      "date": "91135cf0-47db-47f7-a685-2b5291c98982",
+      "name": "conversation-33",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basin weight updates",
@@ -346,8 +346,8 @@
       ]
     },
     {
-      "name": "9608ec37-e825-45c2-ae45-55d64172a8f6",
-      "date": "9608ec37-e825-45c2-ae45-55d64172a8f6",
+      "name": "conversation-34",
+      "date": null,
       "concepts": [
         "auth reuse via existing login",
         "dual-mode architecture",
@@ -357,8 +357,8 @@
       ]
     },
     {
-      "name": "996ba644-0aeb-451e-b9ef-d261a6065ead",
-      "date": "996ba644-0aeb-451e-b9ef-d261a6065ead",
+      "name": "conversation-35",
+      "date": null,
       "concepts": [
         "CLI model inheritance",
         "Haiku for summarization tasks",
@@ -367,8 +367,8 @@
       ]
     },
     {
-      "name": "9d70b476-4478-4a61-961a-65e1f1ad4a8b",
-      "date": "9d70b476-4478-4a61-961a-65e1f1ad4a8b",
+      "name": "conversation-36",
+      "date": null,
       "concepts": [
         "attractor basin weight updates",
         "auth reuse via existing login",
@@ -378,8 +378,8 @@
       ]
     },
     {
-      "name": "a534fa49-91f5-4b93-a150-373a3e0a5418",
-      "date": "a534fa49-91f5-4b93-a150-373a3e0a5418",
+      "name": "conversation-37",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as state generator",
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "name": "a7a5fcef-8b4e-4d27-abd4-388f5d37ff59",
-      "date": "a7a5fcef-8b4e-4d27-abd4-388f5d37ff59",
+      "name": "conversation-38",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "attractor state update loop",
@@ -400,8 +400,8 @@
       ]
     },
     {
-      "name": "a7fdcb97-a3a6-48fa-bb15-85ddf2e68048",
-      "date": "a7fdcb97-a3a6-48fa-bb15-85ddf2e68048",
+      "name": "conversation-39",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basin weight updates",
@@ -411,8 +411,8 @@
       ]
     },
     {
-      "name": "aa41fd8d-0fa1-462b-9da0-1cf6345ecfb9",
-      "date": "aa41fd8d-0fa1-462b-9da0-1cf6345ecfb9",
+      "name": "conversation-40",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "dual-mode architecture",
@@ -422,8 +422,8 @@
       ]
     },
     {
-      "name": "ac9161dc-fbfb-4b0d-8a8e-c384ba25fc7c",
-      "date": "ac9161dc-fbfb-4b0d-8a8e-c384ba25fc7c",
+      "name": "conversation-41",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "auth reuse via existing login",
@@ -433,8 +433,8 @@
       ]
     },
     {
-      "name": "aeb969b6-36d1-47a2-afe8-1e74fdb716c2",
-      "date": "aeb969b6-36d1-47a2-afe8-1e74fdb716c2",
+      "name": "conversation-42",
+      "date": null,
       "concepts": [
         "CLI model inheritance",
         "explicit model routing for summarization",
@@ -442,8 +442,8 @@
       ]
     },
     {
-      "name": "bf561627-5bda-439d-a384-b8ce6c1a3440",
-      "date": "bf561627-5bda-439d-a384-b8ce6c1a3440",
+      "name": "conversation-43",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as inference backend",
@@ -453,8 +453,8 @@
       ]
     },
     {
-      "name": "bfbf3cd9-6591-4e21-baff-0b94e1219946",
-      "date": "bfbf3cd9-6591-4e21-baff-0b94e1219946",
+      "name": "conversation-44",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "local JSON state persistence",
@@ -463,8 +463,8 @@
       ]
     },
     {
-      "name": "c6fb7733-62c6-4079-b986-2de73049af01",
-      "date": "c6fb7733-62c6-4079-b986-2de73049af01",
+      "name": "conversation-45",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as inference backend",
@@ -474,8 +474,8 @@
       ]
     },
     {
-      "name": "c941701c-5e2e-4019-a6ae-236236c2b12c",
-      "date": "c941701c-5e2e-4019-a6ae-236236c2b12c",
+      "name": "conversation-46",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basins as energy states",
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "name": "c9610955-5407-4a40-890c-f327047ecc08",
-      "date": "c9610955-5407-4a40-890c-f327047ecc08",
+      "name": "conversation-47",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "dual-mode architecture",
@@ -495,8 +495,8 @@
       ]
     },
     {
-      "name": "c96f1374-93a9-42cc-86e6-575f13ef43f5",
-      "date": "c96f1374-93a9-42cc-86e6-575f13ef43f5",
+      "name": "conversation-48",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as state generator",
@@ -506,13 +506,13 @@
       ]
     },
     {
-      "name": "cb0cb767-5019-4dee-8479-d04f3d2e71fa",
-      "date": "cb0cb767-5019-4dee-8479-d04f3d2e71fa",
+      "name": "conversation-49",
+      "date": null,
       "concepts": []
     },
     {
-      "name": "d0784b4f-0d9b-4a80-9279-17ee6c4c9087",
-      "date": "d0784b4f-0d9b-4a80-9279-17ee6c4c9087",
+      "name": "conversation-50",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as inference backend",
@@ -522,8 +522,8 @@
       ]
     },
     {
-      "name": "d6d3fc88-4008-4f3b-965e-2f3db7e2c18f",
-      "date": "d6d3fc88-4008-4f3b-965e-2f3db7e2c18f",
+      "name": "conversation-51",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as state generator",
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "name": "df60398b-e30a-4f40-823c-d1cd49549667",
-      "date": "df60398b-e30a-4f40-823c-d1cd49549667",
+      "name": "conversation-52",
+      "date": null,
       "concepts": [
         "applyUpdate safeguard layer",
         "claude -p as inference backend",
@@ -544,8 +544,8 @@
       ]
     },
     {
-      "name": "eeb918d4-fc6f-4e91-b8fc-c746df11cdc3",
-      "date": "eeb918d4-fc6f-4e91-b8fc-c746df11cdc3",
+      "name": "conversation-53",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basins as energy states",
@@ -555,8 +555,8 @@
       ]
     },
     {
-      "name": "ef8fdb55-d382-42ef-9cc1-3a2ca4d4ba07",
-      "date": "ef8fdb55-d382-42ef-9cc1-3a2ca4d4ba07",
+      "name": "conversation-54",
+      "date": null,
       "concepts": [
         "attractor basin memory model",
         "attractor basins as energy states",
@@ -566,8 +566,8 @@
       ]
     },
     {
-      "name": "26f39560-bd85-4247-8085-18790f65758c",
-      "date": "26f39560-bd85-4247-8085-18790f65758c",
+      "name": "conversation-55",
+      "date": null,
       "concepts": [
         "fail-closed owner authorization",
         "latent versus armed vulnerability severity",
