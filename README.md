@@ -1,3 +1,12 @@
+---
+Title        wikigen — concept graph from your conversation history
+Purpose      The introduction: what it builds, how to run it, and where the conversations come from. Start here.
+Author       Jennifer Naomi Nguyen
+Canonical    ~/Projects/Anthropic/wikigen — authoritative. Older copies of wikigen.py exist under ~/Projects/Anthropic/interpretability/attractor/components; this repository is live.
+Updated      2026-09-13
+Dependencies Python 3.9+; networkx, matplotlib, numpy, Pillow, and anthropic (unless using --no-api). ANTHROPIC_API_KEY for concept extraction.
+---
+
 # wikigen
 
 > Builds a concept graph from your conversation history — and animates it appearing over time.
@@ -19,6 +28,16 @@ Three outputs, same graph:
 The GIF is the one worth running first. Watching clusters form — a topic you
 touched once in month one going quiet, then suddenly connecting to something
 from month six — is a different experience from reading a list of what you did.
+
+---
+
+## Documentation
+
+| Document | What it covers |
+|---|---|
+| **README.md** (this file) | What it builds, how to run it, where conversations come from |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | The pipeline stage by stage, and the layout and consolidation decisions |
+| [TECHNICAL.md](TECHNICAL.md) | Install, every flag, input formats, outputs, known limitations |
 
 ---
 
@@ -57,19 +76,34 @@ reach the API, so you aren't paying to extract concepts from a stack trace.
 ### Options
 
 ```
---dir DIR       Directory of conversation .txt files (default: chat_history)
---html          Standalone interactive HTML
---static        Static PNG
---animated      Animated GIF, concepts appearing chronologically
---no-api        Skip the Claude API; derive concepts from filenames
---before DATE   Only sessions whose filename sorts before this (e.g. '2026-05')
---project SUB   Only read Claude Code project dirs whose name contains SUB
-                (e.g. 'Anthropic'). Omitted: every project is read
---out DIR       Output directory (default: .)
+--dir DIR            Directory of conversation .txt files (default: chat_history)
+--html               Standalone interactive HTML
+--static             Static PNG
+--animated           Animated GIF, concepts appearing chronologically
+--no-api             Skip the Claude API; derive concepts from filenames
+--model MODEL        Model for concept extraction
+                     (default: claude-haiku-4-5-20251001)
+--consolidate        Merge near-synonymous concepts in a second pass before graphing
+--save-concepts FILE Write the extracted concepts to JSON, for comparing runs
+--before DATE        Only sessions whose filename sorts before this (e.g. '2026-05')
+--project SUB        Only read Claude Code project dirs whose name contains SUB
+                     (e.g. 'Anthropic'). Omitted: every project is read
+--out DIR            Output directory (default: .)
 ```
 
 `--before` is for watching a specific stretch of time rather than everything at
 once.
+
+**`--consolidate` is the one to reach for when the graph looks like a pile of
+overlapping labels.** Each conversation is analysed on its own, so the same idea
+comes back phrased four different ways — "local JSON state", "…persistence",
+"…storage", "…management" — and because those share neighbours the layout
+correctly stacks them into an unreadable heap. A second pass merges genuine
+synonyms before the graph is built, which is the only place the fix can go.
+
+**`--model` and `--save-concepts` go together.** Different models pick genuinely
+different concepts; saving them lets you compare two runs without re-extracting.
+`out/` holds example artifacts from a Haiku run and an Opus run.
 
 ---
 
