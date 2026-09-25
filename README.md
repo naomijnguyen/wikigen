@@ -1,11 +1,11 @@
----
+<!--
 Title        wikigen — concept graph from your conversation history
 Purpose      The introduction: what it builds, how to run it, and where the conversations come from. Start here.
 Author       Jennifer Naomi Nguyen
 Canonical    ~/Bootwitch/Projects/wikigen — authoritative. Older copies of wikigen.py lived under the former ~/Projects/Anthropic/interpretability/attractor/components and did not move to the current project home. A drifted snapshot does still exist at ~/Bootwitch/Projects/oo/src/wikigen.py; this repository is live.
 Updated      2026-09-16
 Dependencies Python 3.9+; networkx, matplotlib, numpy, Pillow, and anthropic (unless using --no-api). ANTHROPIC_API_KEY for concept extraction.
----
+-->
 
 # wikigen
 
