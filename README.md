@@ -151,6 +151,6 @@ honours it.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+No new open-source or general reuse license is offered for the original work in this revision. Contact Jennifer Naomi Nguyen to discuss permission. Rights already granted under licenses for earlier versions are unaffected. Third-party components remain under their own licenses.
 
 **Jennifer Naomi Nguyen**, with **Claude** as contributor.
