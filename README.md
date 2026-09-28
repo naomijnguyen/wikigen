@@ -149,8 +149,8 @@ honours it.
 
 ---
 
-## License
+## Copyright
 
-No new open-source or general reuse license is offered for the original work in this revision. Contact Jennifer Naomi Nguyen to discuss permission. Rights already granted under licenses for earlier versions are unaffected. Third-party components remain under their own licenses.
+Copyright (c) 2026 Jennifer Naomi Nguyen. All rights reserved. Third-party components remain under their own licenses.
 
 **Jennifer Naomi Nguyen**, with **Claude** as contributor.
